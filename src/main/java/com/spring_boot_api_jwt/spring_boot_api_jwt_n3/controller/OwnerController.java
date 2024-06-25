@@ -24,8 +24,7 @@ public class OwnerController {
     // add owner
     @PostMapping
     public ResponseEntity<OwnerDTO> createOwner(@RequestBody OwnerDTO ownerDTO){
-        
-        OwnerDTO savedOwner = ownerService.createOwner(ownerDTO);
+         OwnerDTO savedOwner = ownerService.createOwner(ownerDTO);
 
         return new ResponseEntity<>(savedOwner, HttpStatus.CREATED);
     }
@@ -34,6 +33,7 @@ public class OwnerController {
     @GetMapping("{cpf}")
     public ResponseEntity<OwnerDTO> getOwnerByCPF(@PathVariable("cpf") Long cpf) {
         OwnerDTO ownerDTO = ownerService.getOwnerByCpf(cpf);
+        
         return ResponseEntity.ok(ownerDTO);
     }
 
@@ -41,6 +41,7 @@ public class OwnerController {
     @GetMapping
     public ResponseEntity<List<OwnerDTO>> getAllOwners(){
         List<OwnerDTO> owners = ownerService.getAllOwners();
+        
         return ResponseEntity.ok(owners);
     }
 
@@ -49,6 +50,7 @@ public class OwnerController {
     public ResponseEntity<OwnerDTO> updateOwner(@PathVariable("cpf") Long cpf,
                                                 @RequestBody OwnerDTO updateOwner) {
         OwnerDTO ownerDTO = ownerService.updateOwner(cpf, updateOwner);
+        
         return ResponseEntity.ok(ownerDTO);
     }
 
@@ -56,6 +58,7 @@ public class OwnerController {
     @DeleteMapping("{cpf}")
     public  ResponseEntity<String> deleteOwner(@PathVariable("cpf") Long cpf) {
         ownerService.deleteOwner(cpf);
+        
         return ResponseEntity.ok("Owner successfully deleted!");
     }
 }
