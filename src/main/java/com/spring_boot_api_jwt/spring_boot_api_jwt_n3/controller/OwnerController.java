@@ -31,7 +31,7 @@ public class OwnerController {
 
     // get owner by CPF
     @GetMapping("{cpf}")
-    public ResponseEntity<OwnerDTO> getOwnerByCPF(@PathVariable("cpf") Long cpf) {
+    public ResponseEntity<OwnerDTO> getOwnerByCPF(@PathVariable("cpf") String cpf) {
         OwnerDTO ownerDTO = ownerService.getOwnerByCpf(cpf);
         
         return ResponseEntity.ok(ownerDTO);
@@ -47,7 +47,7 @@ public class OwnerController {
 
     // update owner
     @PutMapping("{cpf}")
-    public ResponseEntity<OwnerDTO> updateOwner(@PathVariable("cpf") Long cpf,
+    public ResponseEntity<OwnerDTO> updateOwner(@PathVariable("cpf") String cpf,
                                                 @RequestBody OwnerDTO updateOwner) {
         OwnerDTO ownerDTO = ownerService.updateOwner(cpf, updateOwner);
         
@@ -56,7 +56,7 @@ public class OwnerController {
 
     // delete owner by CPF
     @DeleteMapping("{cpf}")
-    public  ResponseEntity<String> deleteOwner(@PathVariable("cpf") Long cpf) {
+    public  ResponseEntity<String> deleteOwner(@PathVariable("cpf") String cpf) {
         ownerService.deleteOwner(cpf);
         
         return ResponseEntity.ok("Owner successfully deleted!");
