@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface VehicleRepository extends JpaRepository<Owner, Long> {
     Optional<Vehicle> findByCpf(String cpf);
+    void deleteByCpf(String cpf);
 }
