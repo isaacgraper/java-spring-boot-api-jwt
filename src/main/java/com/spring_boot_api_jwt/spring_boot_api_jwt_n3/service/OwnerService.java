@@ -2,6 +2,7 @@ package com.spring_boot_api_jwt.spring_boot_api_jwt_n3.service;
 
 import com.spring_boot_api_jwt.spring_boot_api_jwt_n3.dto.OwnerDTO;
 import com.spring_boot_api_jwt.spring_boot_api_jwt_n3.entity.Owner;
+import java.lang.String;
 
 import java.util.List;
 
@@ -12,12 +13,14 @@ public interface OwnerService {
     OwnerDTO createOwner(OwnerDTO ownerDTO);
 
     // get owner by CPF
-    OwnerDTO getOwnerByCpf(Long cpf);
+    OwnerDTO getOwnerByCpf(String cpf);
 
     // get all owners
     List<OwnerDTO> getAllOwners();
 
-    OwnerDTO updateOwner(Long cpf, OwnerDTO ownerDTO);
+    // update owner by CPF
+    OwnerDTO updateOwner(String cpf, OwnerDTO ownerDTO);
 
-    void deleteOwner(Long cpf);
+    // delete owner by CPF
+    void deleteOwner(String cpf);
 }
