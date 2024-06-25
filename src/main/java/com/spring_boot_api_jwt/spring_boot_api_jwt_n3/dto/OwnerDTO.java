@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class OwnerDTO {
     private Long id;
-    private Long cpf;
+    private Long cpf; // definir como string
     private String password;
     private String firstName;
     private String phone;
