@@ -2,7 +2,7 @@
 
 Seguindo de acordo com a regra de negócio estabelecidade pelo professor, trabalho está ainda incompleto, porém será feito um update para correção de entidades, modelos das entidades nos DTO's e validação de campos para melhor aproveitamento e melhorias.
 
-## Entendimento da aplicação e modelo do fluxo construído.
+### Entendimento da aplicação e modelo do fluxo construído.
 
 *Controller*: Recebe requisições, interpreta e aciona serviços para gerar respostas. Define caminhos de acesso (rotas) e encapsula lógica para lidar com requisições (ações).
 
@@ -16,9 +16,9 @@ Seguindo de acordo com a regra de negócio estabelecidade pelo professor, trabal
 
 *Service*: Encapsula a lógica de negócio da aplicação e o processamento dos dados, definindo os métodos na qual a aplicação irá atuar.
 
-Impl: Concretiza os métodos abstratos definidos no service, fornecendo a implementação específica e/ou personalizada desses métodos. Utiliza do DI para injetar as dependências necessárias.
+*Impl*: Concretiza os métodos abstratos definidos no service, fornecendo a implementação específica e/ou personalizada desses métodos. Utiliza do DI para injetar as dependências necessárias.
 
-Fluxo de Execução:
+### Fluxo de Execução:
 
 Requisição do Owner chega ao Controller.
 Controller valida, extrai dados e converte para DTO.
