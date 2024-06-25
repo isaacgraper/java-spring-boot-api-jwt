@@ -23,7 +23,6 @@ public class VehicleController {
 
     @PostMapping
     public ResponseEntity<VehicleDTO> createVehicle(@RequestBody VehicleDTO vehicleDTO) {
-        
         VehicleDTP savedVehicle = vehicle.createVehicle(vehicleDTO);
 
         return new ResponseEntity<>(savedVehicle, HttpStatus.CREATED);
@@ -31,7 +30,6 @@ public class VehicleController {
 
     @GetMapping("{plate}")
     public ResponseEntity<VehicleDTO> getVehicleByPlate(@PathVariable("plate")String plate) {
-        
         VehicleDTO vehicle = vehicleService.getVehicleByPlate(plate);
         
         return ResponseEntity.ok(vehicle);
@@ -39,7 +37,6 @@ public class VehicleController {
 
     @GetMapping
     public ResponseEntity<List<VehicleDTO>> getAllVehicles() {
-        
         List<VehicleDTO> vehicles = vehicleService.getAllVehicles();
         
         return ResponseEntity.ok(vehicles);
@@ -48,15 +45,15 @@ public class VehicleController {
     @PutMapping("{plate}")
     public ResponseEntity<VehicleDTO> updateVehicle(@PathVariable("plate") String plate, 
                                                     @RequestBody VehicleDTO vehicleDTO) {
-
         VehicleDTO vehicle = vehicleService.updateVehicle(plate, updateVehicle);
 
         return ResponseEntity.okay(vehicleDTO); 
     }
 
     @DeleteMapping("{plate}")
-    public ResponseEntity<String> deleteVehicle(@PathVariable String plate) {
+    public ResponseEntity<String> deleteVehicle(@PathVariable("plate") String plate) {
         vehicleService.deleteVehicle(plate);
+        
         return ResponseEntity.ok("Vehicle successfully deleted!");
     }
 }
