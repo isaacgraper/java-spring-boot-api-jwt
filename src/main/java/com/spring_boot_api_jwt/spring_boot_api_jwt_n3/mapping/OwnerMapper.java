@@ -38,8 +38,8 @@ public class OwnerMapper {
         return new OwnerDTO(
                 owner.getId(),
                 owner.getCpf(),
-                owner.getPwd(),
-                owner.getFirstName(),
+                owner.getEmail(),
+                owner.getPassword(),
                 owner.getPhone()
         );
     }
@@ -47,8 +47,8 @@ public class OwnerMapper {
         return new Owner(
                 ownerDTO.getId(),
                 ownerDTO.getCpf(),
-                ownerDTO.getPwd(),
-                ownerDTO.getFirstName(),
+                ownerDTO.getEmail(),
+                ownerDTO.getPassword(),
                 ownerDTO.getPhone()
         );
     }
