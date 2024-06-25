@@ -23,9 +23,12 @@ public class Owner {
     @Column(name = "cpf", nullable = false)
     private String cpf;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = true)
     private String email;
 
-    @Column(name = "phone", nullable = false)
+    @Column(name = "password", nulable = false)
+    private String password;
+    
+    @Column(name = "phone", nullable = true)
     private String phone;
 }
