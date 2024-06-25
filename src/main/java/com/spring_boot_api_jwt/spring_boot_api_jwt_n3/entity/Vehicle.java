@@ -30,13 +30,10 @@ public class Vehicle {
     @Column(name = "price")
     private BigDecimal price;
 
-    // foreign key
-    @ManyToOne
-    @JoinColumn(name = "owner_id")
-    private Owner ownerId;
+    @Column(name = "owner_id")
+    private Long ownerId;
 
-    @ManyToOne
-    @JoinColumn(name = "vehicle_type_id")
-    private VehicleType vehicleTypeId;
+    @Column(name = "vehicle_type_id")
+    private Long vehicleTypeId;
 
 }

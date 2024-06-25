@@ -26,24 +26,25 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public VehicleDTO createVehicle(VehicleDTO vehicleDTO) {
-        Owner owner = ownerRepository.findById(vehicleDTO.getOwnerId())
-                .orElseThrow(() -> new ResourceNotFoundException("Owner not found with id: " + vehicleDTO.getOwnerId()));
-
+       
         Vehicle vehicle = VehicleMapper.mapToVehicle(vehicleDTO);
-        vehicle.setOwner(owner);
         Vehicle savedVehicle = vehicleRepository.save(vehicle);
+        
         return VehicleMapper.mapToVehicleDTO(savedVehicle);
     }
 
     @Override
     public VehicleDTO getVehicleByPlate(String plate) {
+
         Vehicle vehicle = vehicleRepository.findByPlate(plate)
                 .orElseThrow(() -> new ResourceNotFoundException("Vehicle not found with id: " + plate));
+        
         return VehicleMapper.mapToVehicleDTO(vehicle);
     }
 
     @Override
     public List<VehicleDTO> getAllVehicles() {
+
         List<Vehicle> vehicles = vehicleRepository.findAll();
         return vehicles.stream()
                 .map(VehicleMapper::mapToVehicleDTO)
@@ -52,12 +53,15 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public VehicleDTO updateVehicle(String plate, VehicleDTO vehicleDTO) {
-        Vehicle vehicle = vehicleRepository.findByPlate(plate)
-                .orElseThrow(() -> new ResourceNotFoundException("Vehicle not found with id: " + plate));
+       
+       Vehicle vehicle = vehicleRepository.findByPlate(plate).orElseThrow(
+                () -> new ResourceNotFoundException("Vehicle not found with id: " + plate));
 
         vehicle.setPlate(vehicleDTO.getPlate());
         vehicle.setModel(vehicleDTO.getModel());
         vehicle.setPrice(vehicleDTO.getPrice());
+        vehicle.setOwnerId(vehicleDTO.getOwnerId());
+        vehicle.setVehicleTypeId(vehicleDTO.getVehicleTypeId());
 
         Vehicle updatedVehicle = vehicleRepository.save(vehicle);
 
@@ -66,9 +70,10 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public void deleteVehicle(String plate) {
-        Vehicle vehicle = vehicleRepository.findByPlate(plate)
-                .orElseThrow(() -> new ResourceNotFoundException("Vehicle not found with id: " + plate));
 
-        vehicleRepository.delete(vehicle);
+        Vehicle vehicle = vehicleRepository.findByPlate(plate).orElseThrow(
+                () -> new ResourceNotFoundException("Vehicle not found with id: " + plate));
+
+        vehicleRepository.deleteByPlate(vehicle);
     }
 }

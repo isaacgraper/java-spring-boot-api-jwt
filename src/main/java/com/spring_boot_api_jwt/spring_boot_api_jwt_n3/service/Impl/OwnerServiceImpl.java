@@ -38,6 +38,7 @@ public class OwnerServiceImpl implements OwnerService {
 
         Owner owner = OwnerMapper.mapToOwner(ownerDTO);
         Owner savedOwner = ownerRepository.save(owner);
+
         return OwnerMapper.mapToOwnerDTO(savedOwner);
     }
 
@@ -47,6 +48,7 @@ public class OwnerServiceImpl implements OwnerService {
         Owner owner = ownerRepository.findByCpf(cpf)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Owner with CPF not found: " + cpf));
+       
         return OwnerMapper.mapToOwnerDTO(owner);
     }
 
@@ -89,6 +91,6 @@ public class OwnerServiceImpl implements OwnerService {
                 () -> new ResourceNotFoundException("Owner with given CPF does not exist: " + cpf)
         );
 
-        ownerRepository.deleteById(cpf);
+        ownerRepository.deleteByCpf(cpf);
     }
 }

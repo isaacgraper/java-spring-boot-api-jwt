@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
     Optional<Vehicle> findByPlate(String plate);
+    Optional<Vehicle> deleteByPlate(String plate);
 }

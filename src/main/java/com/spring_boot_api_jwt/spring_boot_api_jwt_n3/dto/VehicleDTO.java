@@ -18,6 +18,6 @@ public class VehicleDTO {
     private String plate;
     private String model;
     private BigDecimal price;
-    private Owner ownerId;
-    private VehicleType vehicleTypeId;
+    private Long ownerId;
+    private Long vehicleTypeId;
 }

@@ -24,7 +24,9 @@ public class OwnerController {
     // add owner
     @PostMapping
     public ResponseEntity<OwnerDTO> createOwner(@RequestBody OwnerDTO ownerDTO){
+        
         OwnerDTO savedOwner = ownerService.createOwner(ownerDTO);
+
         return new ResponseEntity<>(savedOwner, HttpStatus.CREATED);
     }
 

@@ -23,33 +23,38 @@ public class VehicleController {
 
     @PostMapping
     public ResponseEntity<VehicleDTO> createVehicle(@RequestBody VehicleDTO vehicleDTO) {
-        VehicleDTO createdVehicle = vehicleService.createVehicle(vehicleDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdVehicle);
+        
+        VehicleDTP savedVehicle = vehicle.createVehicle(vehicleDTO);
+
+        return new ResponseEntity<>(savedVehicle, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{plate}")
-    public ResponseEntity<VehicleDTO> getVehicleByPlate(@PathVariable String plate) {
+    @GetMapping("{plate}")
+    public ResponseEntity<VehicleDTO> getVehicleByPlate(@PathVariable("plate")String plate) {
+        
         VehicleDTO vehicle = vehicleService.getVehicleByPlate(plate);
+        
         return ResponseEntity.ok(vehicle);
     }
 
     @GetMapping
     public ResponseEntity<List<VehicleDTO>> getAllVehicles() {
+        
         List<VehicleDTO> vehicles = vehicleService.getAllVehicles();
+        
         return ResponseEntity.ok(vehicles);
     }
 
-    @PutMapping("/{plate}")
-    public ResponseEntity<VehicleDTO> updateVehicle(@PathVariable String plate, @RequestBody VehicleDTO vehicleDTO) {
-        try {
-            VehicleDTO updatedVehicle = vehicleService.updateVehicle(plate, vehicleDTO);
-            return ResponseEntity.ok(updatedVehicle);
-        } catch (ResourceNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        }
+    @PutMapping("{plate}")
+    public ResponseEntity<VehicleDTO> updateVehicle(@PathVariable("plate") String plate, 
+                                                    @RequestBody VehicleDTO vehicleDTO) {
+
+        VehicleDTO vehicle = vehicleService.updateVehicle(plate, updateVehicle);
+
+        return ResponseEntity.okay(vehicleDTO); 
     }
 
-    @DeleteMapping("/{plate}")
+    @DeleteMapping("{plate}")
     public ResponseEntity<String> deleteVehicle(@PathVariable String plate) {
         vehicleService.deleteVehicle(plate);
         return ResponseEntity.ok("Vehicle successfully deleted!");

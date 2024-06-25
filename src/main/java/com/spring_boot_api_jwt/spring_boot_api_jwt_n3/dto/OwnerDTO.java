@@ -12,7 +12,7 @@ import lombok.Setter;
 public class OwnerDTO {
     private Long id;
     private Long cpf;
-    private int pwd;
+    private String password;
     private String firstName;
     private String phone;
 }
