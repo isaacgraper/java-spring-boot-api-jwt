@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.lang.String;
 
 @Service
 public class OwnerServiceImpl implements OwnerService {
@@ -31,10 +32,10 @@ public class OwnerServiceImpl implements OwnerService {
     public OwnerDTO createOwner(OwnerDTO ownerDTO) {
 
         // validate cpf length
-        if (ownerDTO.getCpf().toString().length() != CPF_LENGTH) throw new InvalidCredentialsException("CPF must have 13 digits.");
+        if (ownerDTO.getCpf().length() != CPF_LENGTH) throw new InvalidCredentialsException("CPF must have 13 digits.");
 
         // validate pwd length
-        if(String.valueOf(ownerDTO.getPwd()).length() != PWD_LENGTH) throw new InvalidCredentialsException("Password must have 4 digits.");
+        if(String.valueOf(ownerDTO.getPassword()).length() != PWD_LENGTH) throw new InvalidCredentialsException("Password must have 4 digits.");
 
         Owner owner = OwnerMapper.mapToOwner(ownerDTO);
         Owner savedOwner = ownerRepository.save(owner);
@@ -43,7 +44,7 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public OwnerDTO getOwnerByCpf(Long cpf) {
+    public OwnerDTO getOwnerByCpf(String cpf) {
 
         Owner owner = ownerRepository.findByCpf(cpf)
                 .orElseThrow(() ->
@@ -62,7 +63,7 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public OwnerDTO updateOwner(Long cpf, OwnerDTO ownerDTO) {
+    public OwnerDTO updateOwner(String cpf, OwnerDTO ownerDTO) {
 
         Owner owner = ownerRepository.findByCpf(cpf).orElseThrow(
                 () -> new ResourceNotFoundException("Owner with given CPF does not exist: " + cpf)
@@ -75,8 +76,8 @@ public class OwnerServiceImpl implements OwnerService {
         if(String.valueOf(ownerDTO.getPwd()).length() != PWD_LENGTH) throw new InvalidCredentialsException("Password must have 4 digits.");
 
         owner.setCpf(ownerDTO.getCpf());
-        owner.setPwd(ownerDTO.getPwd());
-        owner.setFirstName(ownerDTO.getFirstName());
+        owner.setEmail(ownerDTO.getEmail());
+        owner.setPassword(ownerDTO.getPassword());
         owner.setPhone(ownerDTO.getPhone());
 
         Owner updatedOwner = ownerRepository.save(owner);
@@ -85,7 +86,7 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public void deleteOwner(Long cpf) {
+    public void deleteOwner(String cpf) {
 
         Owner owner = ownerRepository.findByCpf(cpf).orElseThrow(
                 () -> new ResourceNotFoundException("Owner with given CPF does not exist: " + cpf)
