@@ -19,7 +19,7 @@ public class OwnerServiceImpl implements OwnerService {
 
     private final OwnerRepository ownerRepository;
 
-    private final long CPF_LENGTH = 13;
+    private final long CPF_LENGTH = 11;
     private final int PWD_LENGTH = 4;
 
     @Autowired
@@ -67,7 +67,7 @@ public class OwnerServiceImpl implements OwnerService {
         );
 
         // validate cpf length
-        if (ownerDTO.getCpf().toString().length() != CPF_LENGTH) throw new InvalidCredentialsException("CPF must have 13 digits.");
+        if (ownerDTO.getCpf().toString().length() != CPF_LENGTH) throw new InvalidCredentialsException("CPF must have 1 digits.");
 
         // validate pwd length
         if(String.valueOf(ownerDTO.getPwd()).length() != PWD_LENGTH) throw new InvalidCredentialsException("Password must have 4 digits.");
