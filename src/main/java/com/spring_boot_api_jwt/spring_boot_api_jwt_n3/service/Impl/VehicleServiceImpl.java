@@ -74,6 +74,6 @@ public class VehicleServiceImpl implements VehicleService {
         Vehicle vehicle = vehicleRepository.findByPlate(plate).orElseThrow(
                 () -> new ResourceNotFoundException("Vehicle not found with id: " + plate));
 
-        vehicleRepository.deleteByPlate(vehicle);
+        vehicleRepository.deleteByPlate(plate);
     }
 }
