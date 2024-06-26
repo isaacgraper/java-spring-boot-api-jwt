@@ -70,10 +70,10 @@ public class OwnerServiceImpl implements OwnerService {
         );
 
         // validate cpf length
-        if (ownerDTO.getCpf().toString().length() != CPF_LENGTH) throw new InvalidCredentialsException("CPF must have 1 digits.");
+        if (ownerDTO.getCpf().length() != CPF_LENGTH) throw new InvalidCredentialsException("CPF must have 1 digits.");
 
         // validate pwd length
-        if(String.valueOf(ownerDTO.getPwd()).length() != PWD_LENGTH) throw new InvalidCredentialsException("Password must have 4 digits.");
+        if(String.valueOf(ownerDTO.getPassword()).length() != PWD_LENGTH) throw new InvalidCredentialsException("Password must have 4 digits.");
 
         owner.setCpf(ownerDTO.getCpf());
         owner.setEmail(ownerDTO.getEmail());
@@ -87,11 +87,10 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public void deleteOwner(String cpf) {
-
         Owner owner = ownerRepository.findByCpf(cpf).orElseThrow(
                 () -> new ResourceNotFoundException("Owner with given CPF does not exist: " + cpf)
         );
-
+        
         ownerRepository.deleteByCpf(cpf);
     }
 }
