@@ -12,12 +12,12 @@ import com.spring_boot_api_jwt.spring_boot_api_jwt_n3.entity.Owner;
 
 public class OwnerMapper {
 
-    // forma simplificada e melhor, porém requer mudança na estrutura do projeto
+    // Better logic to understand DTO to Entity and otherwise.
     //  public OwnerDTO toDto(Owner owner) {
     //     return new OwnerDTO(
     //         owner.getId(),
     //         owner.getCpf(),
-    //         owner.getPassword(), // remover o pwd por password, mudar entidade e dto
+    //         owner.getPassword(),
     //         owner.getFirstName(),
     //         owner.getPhone()
     //     );
