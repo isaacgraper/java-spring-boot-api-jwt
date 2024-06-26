@@ -52,7 +52,7 @@ public class VehicleController {
 
     @DeleteMapping("{plate}")
     public ResponseEntity<String> deleteVehicle(@PathVariable("plate") String plate) {
-        vehicleService.deleteVehicle(plate);
+        vehicleService.deleteByPlate(plate);
         
         return ResponseEntity.ok("Vehicle successfully deleted!");
     }
