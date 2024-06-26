@@ -28,7 +28,7 @@ public class Vehicle {
     private String model;
 
     @Column(name = "price")
-    private BigDecimal price;
+    private double price; // Refactor from BigDecimal to double
 
     @Column(name = "owner_id")
     private Long ownerId;
