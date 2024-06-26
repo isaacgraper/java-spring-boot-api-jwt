@@ -19,6 +19,6 @@ public interface VehicleService {
     // update vehicle
     VehicleDTO updateVehicle(String plate, VehicleDTO VehicleDTO);
 
-    // delete vehicle by plate
-    void deleteVehicle(String plate);
+    // delete vehicle by plate (logic implemented in repository)
+    // void deleteVehicle(String plate); 
 }
